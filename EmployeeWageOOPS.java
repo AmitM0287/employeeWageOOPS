@@ -4,18 +4,26 @@ public class EmployeeWageOOPS {
 
 	public static void main(String[] args) {
 
-		System.out.println("Welcome to Employee Wage Computation Program!");
+		System.out.println("\nWelcome to Employee Wage Computation Program!\n");
 
 		Employee emp = new Employee();
 
-		if (emp.attendance()) {
-			System.out.println("Present");
-			emp.dailyEmpWage();
-			System.out.println(emp.dailyWage);
+		System.out.println("Day N0." + "	" + "Status" + "	    " + "Daily Wage" + "	    " + "Total Wage");
+		for (int i=1; i<=30; i++) {
+			if (emp.attendance()) {
+				emp.dailyEmpWage();
+				System.out.println("Day " + i + "	" + "Present" + "		" + emp.dailyWage + "		" + emp.totalWage);
 
-		} else {
-			System.out.println("Absent");
+			} else {
+				emp.dailyWage=0;
+				System.out.println("Day " + i + "	" + "Absent" + "		" + emp.dailyWage + "		" + emp.totalWage);
+			}
 		}
+
+		System.out.println("\nHence, Total employee wage for a month = " + emp.totalWage);
+
+
+
 	}
 
 }
@@ -46,10 +54,12 @@ class Employee {
 		switch (t) {
 		case 0:
 			dailyWage = fullDay * wageHour;
+			totalWage += dailyWage;
 			break;
 
 		case 1:
 			dailyWage = halfDay * wageHour;
+			totalWage += dailyWage;
 			break;
 
 		default:
