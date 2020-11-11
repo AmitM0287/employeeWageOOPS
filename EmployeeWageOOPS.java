@@ -10,6 +10,8 @@ public class EmployeeWageOOPS {
 
 		if (emp.attendance()) {
 			System.out.println("Present");
+			emp.dailyEmpWage();
+			System.out.println(emp.dailyWage);
 
 		} else {
 			System.out.println("Absent");
@@ -39,11 +41,15 @@ class Employee {
         }
 
 	public void dailyEmpWage() {
-		int t = random.nextInt(1);
+		int t = random.nextInt(2);
 
 		switch (t) {
 		case 0:
 			dailyWage = fullDay * wageHour;
+			break;
+
+		case 1:
+			dailyWage = halfDay * wageHour;
 			break;
 
 		default:
