@@ -7,22 +7,7 @@ public class EmployeeWageOOPS {
 		System.out.println("\nWelcome to Employee Wage Computation Program!\n");
 
 		Employee emp = new Employee();
-
-		System.out.println("Day N0." + "	" + "Status" + "	    " + "Daily Wage" + "	    " + "Total Wage");
-		for (int i=1; i<=30; i++) {
-			if (emp.attendance()) {
-				emp.dailyEmpWage();
-				System.out.println("Day " + i + "	" + "Present" + "		" + emp.dailyWage + "		" + emp.totalWage);
-
-			} else {
-				emp.dailyWage=0;
-				System.out.println("Day " + i + "	" + "Absent" + "		" + emp.dailyWage + "		" + emp.totalWage);
-			}
-		}
-
-		System.out.println("\nHence, Total employee wage for a month = " + emp.totalWage);
-
-
+		emp.computeEmpWage();
 
 	}
 
@@ -31,13 +16,13 @@ public class EmployeeWageOOPS {
 class Employee {
         Random random = new Random();
 
-	int wageHour = 20;
-	int fullDay = 8;
-	int halfDay = 4;
-	int totalWage = 0;
-	int dailyWage = 0;
+	private int wageHour = 20;
+	private int fullDay = 8;
+	private int halfDay = 4;
+	private int totalWage = 0;
+	private int dailyWage = 0;
 
-        public boolean attendance() {
+        private boolean attendance() {
                 int rand = random.nextInt(2);
 
                 if(rand == 1) {
@@ -48,7 +33,7 @@ class Employee {
                 }
         }
 
-	public void dailyEmpWage() {
+	private void dailyEmpWage() {
 		int t = random.nextInt(2);
 
 		switch (t) {
@@ -65,5 +50,21 @@ class Employee {
 		default:
 			System.err.println("Invalid Operation!");
 		}
+	}
+
+	protected void computeEmpWage() {
+		System.out.println("Day N0." + "	" + "Status" + "	    " + "Daily Wage" + "	    " + "Total Wage");
+		for (int i = 1; i <= 30; i++) {
+			if (attendance()) {
+				dailyEmpWage();
+				System.out.println("Day " + i + "	" + "Present" + "		" + dailyWage + "		" + totalWage);
+
+			} else {
+				dailyWage = 0;
+				System.out.println("Day " + i + "	" + "Absent" + "		" + dailyWage + "		" + totalWage);
+			}
+		}
+
+		System.out.println("\nHence, Total employee wage for a month = " + totalWage);
 	}
 }
